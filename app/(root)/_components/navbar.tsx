@@ -15,7 +15,7 @@ function Navbar() {
 	const pathname = usePathname()
 	return (
 		<div className='fixed inset-0 z-40 h-16 bg-background/70 backdrop-blur-xl'>
-			<div className='container mx-auto flex h-full max-w-7xl items-center justify-between border-b px-2'>
+			<div className='container mx-auto flex h-full max-w-screen-2xl items-center justify-between gap-4 border-b px-4'>
 				<div className='flex items-center gap-4'>
 					<Mobile />
 					<Logo />

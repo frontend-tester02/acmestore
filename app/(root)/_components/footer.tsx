@@ -8,7 +8,7 @@ function Footer() {
 	return (
 		<>
 			<div className='mt-12 bg-secondary pt-2'>
-				<div className='container mx-auto max-w-5xl py-8'>
+				<div className='container mx-auto max-w-7xl py-8'>
 					<div className='grid grid-cols-1 gap-8 md:grid-cols-4'>
 						<div className='col-span-2 space-y-4'>
 							<Logo />

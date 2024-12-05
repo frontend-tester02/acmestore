@@ -10,6 +10,8 @@ import ModeToggle from '@/components/shared/mode-toggle'
 import { ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Mobile from './mobile'
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs'
+import UserBox from '@/components/shared/user-box'
 
 function Navbar() {
 	const pathname = usePathname()
@@ -38,11 +40,31 @@ function Navbar() {
 					<GlobalSearch />
 				</div>
 
-				<div className='flex items-center gap-4'>
-					<ModeToggle />
-					<Button type='button' size={'icon'} variant={'outline'}>
-						<ShoppingCart />
-					</Button>
+				<div className='flex items-center gap-2'>
+					<div className='flex items-center gap-4'>
+						<ModeToggle />
+						<Button type='button' size={'icon'} variant={'outline'}>
+							<ShoppingCart />
+						</Button>
+					</div>
+
+					<div className='flex items-center gap-2'>
+						<SignedIn>
+							<UserBox />
+						</SignedIn>
+						<SignedOut>
+							<SignInButton mode='modal'>
+								<Button variant={'ghost'} size={'lg'} className='rounded-md'>
+									Log In
+								</Button>
+							</SignInButton>
+							<SignUpButton mode='modal'>
+								<Button size={'lg'} className='rounded-md'>
+									Sign Up
+								</Button>
+							</SignUpButton>
+						</SignedOut>
+					</div>
 				</div>
 			</div>
 		</div>

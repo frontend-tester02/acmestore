@@ -54,7 +54,7 @@ function Navbar() {
 						</SignedIn>
 						<SignedOut>
 							<SignInButton mode='modal'>
-								<Button variant={'ghost'} size={'lg'} className='rounded-md'>
+								<Button variant={'outline'} size={'lg'} className='rounded-md'>
 									Log In
 								</Button>
 							</SignInButton>

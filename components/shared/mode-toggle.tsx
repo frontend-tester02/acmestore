@@ -13,7 +13,7 @@ function ModeToggle() {
 	return mount && resolvedTheme === 'dark' ? (
 		<Button
 			size={'icon'}
-			variant={'ghost'}
+			variant={'outline'}
 			onClick={() => setTheme('light')}
 			aria-label='mode-toggle-to-light'
 		>
@@ -23,7 +23,7 @@ function ModeToggle() {
 		<Button
 			size={'icon'}
 			onClick={() => setTheme('dark')}
-			variant={'ghost'}
+			variant={'outline'}
 			aria-label='mode-toggle-to-dark'
 		>
 			<Moon />

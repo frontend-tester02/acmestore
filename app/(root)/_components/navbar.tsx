@@ -68,7 +68,7 @@ function Navbar() {
 								</Button>
 							</SignUpButton> */}
 							<SignInButton mode='modal'>
-								<Button variant={'outline'} size={'icon'} className='md:hidden'>
+								<Button variant={'default'} size={'icon'} className='md:hidden'>
 									<LogIn />
 								</Button>
 							</SignInButton>

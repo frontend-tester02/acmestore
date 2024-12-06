@@ -75,7 +75,7 @@ function Footer() {
 
 				<div className='pt-4 text-center'>
 					<Separator className='mb-3 dark:bg-gray-500' />
-					<p>© {new Date().getFullYear()}. copyright</p>
+					<p>© {new Date().getFullYear()}. All rights reserved</p>
 				</div>
 			</div>
 		</div>

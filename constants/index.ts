@@ -1,8 +1,8 @@
 export const navLinks = [
 	{ route: '', name: 'Home' },
-	{ route: 'search', name: 'All' },
-	{ route: 'shirts', name: 'Shirts' },
-	{ route: 'stikers', name: 'Stikers' },
+	{ route: 'search', name: 'Shop' },
+	{ route: 'faq', name: 'FAQ' },
+	{ route: 'contact', name: 'Contact' },
 ]
 
 export const productItems = [

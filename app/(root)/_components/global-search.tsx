@@ -6,7 +6,7 @@ import { Search } from 'lucide-react'
 function GlobalSearch() {
 	return (
 		<>
-			<div className='relative mx-auto w-[400px] max-w-2xl max-md:w-[300px] md:w-[300px]'>
+			<div className='relative mx-auto w-[350px] max-w-2xl max-md:w-[300px] md:w-[300px]'>
 				<Input
 					type='search'
 					placeholder='Search for products...'

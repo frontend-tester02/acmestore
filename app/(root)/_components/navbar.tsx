@@ -7,10 +7,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import GlobalSearch from './global-search'
 import ModeToggle from '@/components/shared/mode-toggle'
-import { ShoppingCart } from 'lucide-react'
+import { LogIn, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Mobile from './mobile'
-import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 import UserBox from '@/components/shared/user-box'
 
 function Navbar() {
@@ -41,7 +41,7 @@ function Navbar() {
 				</div>
 
 				<div className='flex items-center gap-2'>
-					<div className='flex items-center gap-4'>
+					<div className='flex items-center gap-2'>
 						<ModeToggle />
 						<Button type='button' size={'icon'} variant={'outline'}>
 							<ShoppingCart />
@@ -54,15 +54,24 @@ function Navbar() {
 						</SignedIn>
 						<SignedOut>
 							<SignInButton mode='modal'>
-								<Button variant={'outline'} size={'lg'} className='rounded-md'>
+								<Button
+									variant={'default'}
+									size={'lg'}
+									className='hidden rounded-md md:flex'
+								>
 									Log In
 								</Button>
 							</SignInButton>
-							<SignUpButton mode='modal'>
-								<Button size={'lg'} className='rounded-md'>
+							{/* <SignUpButton mode='modal'>
+								<Button size={'lg'} className='hidden rounded-md md:flex'>
 									Sign Up
 								</Button>
-							</SignUpButton>
+							</SignUpButton> */}
+							<SignInButton mode='modal'>
+								<Button variant={'outline'} size={'icon'} className='md:hidden'>
+									<LogIn />
+								</Button>
+							</SignInButton>
 						</SignedOut>
 					</div>
 				</div>

@@ -5,3 +5,9 @@ export const contactSchema = z.object({
 	email: z.string().email(),
 	name: z.string().min(3),
 })
+
+export const productSchema = z.object({
+	title: z.string(),
+	category: z.string(),
+	price: z.string().min(0),
+})

@@ -1,5 +1,4 @@
 import ContactForm from '@/components/forms/contact-form'
-import Header from '@/components/shared/header'
 import { Mail, Phone } from 'lucide-react'
 
 async function Page() {

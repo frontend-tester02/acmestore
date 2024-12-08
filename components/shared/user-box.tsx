@@ -57,15 +57,13 @@ function UserBox() {
 							{'admin'}
 						</DropdownMenuItem>
 					</Link>
-				)}
-
-				{user?.role === 'instructor' && (
-					<Link href={'/instructor'}>
-						<DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>
-							{'instructor'}
-						</DropdownMenuItem>
-					</Link>
 				)} */}
+
+				<Link href={'/seller'}>
+					<DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>
+						Seller
+					</DropdownMenuItem>
+				</Link>
 
 				<Link href={'/profile'}>
 					<DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>

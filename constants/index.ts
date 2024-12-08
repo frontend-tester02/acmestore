@@ -1,3 +1,11 @@
+import {
+	FileCode,
+	GaugeCircle,
+	MessageSquareMore,
+	Settings2,
+	ShoppingBag,
+} from 'lucide-react'
+
 export const navLinks = [
 	{ route: '', name: 'Home' },
 	{ route: 'search', name: 'Shop' },
@@ -180,3 +188,17 @@ export const faqs = [
 			'Our customer support team is available via email at support@yourstore.com, by phone at 1-800-123-4567 from 9am to 5pm EST, Monday through Friday, or through the chat feature on our website.',
 	},
 ]
+
+export const sellerNavLinks = [
+	{ label: 'Dashboard', route: '/seller', icon: GaugeCircle },
+	{ label: 'My Products', route: '/seller/my-products', icon: ShoppingBag },
+	{
+		label: 'Create Product',
+		route: '/seller/create-products',
+		icon: FileCode,
+	},
+	{ label: 'Reviews', route: '/seller/reviews', icon: MessageSquareMore },
+	{ label: 'Settings', route: '/seller/settings', icon: Settings2 },
+]
+
+export const categoryProducts = ['Bags', 'Shoes', 'T-shirts', 'Cup']

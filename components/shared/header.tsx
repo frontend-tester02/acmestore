@@ -1,17 +1,14 @@
-import React from 'react'
-
 interface Props {
 	title: string
 	description?: string
 }
 
-function Header({ title }: Props) {
+function Header({ title, description }: Props) {
 	return (
-		<>
-			<div className='container mx-auto mt-8 max-w-6xl'>
-				<h2 className='font-roboto text-xl font-bold'>{title}</h2>
-			</div>
-		</>
+		<div className='pt-4'>
+			<h1 className='font-roboto text-4xl font-bold'>{title}</h1>
+			<p className='text-sm font-medium text-muted-foreground'>{description}</p>
+		</div>
 	)
 }
 

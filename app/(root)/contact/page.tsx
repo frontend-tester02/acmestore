@@ -29,7 +29,7 @@ async function Page() {
 					</div>
 
 					<div>
-						<h1 className='mb-2 font-spaceGrotesk text-4xl'>Contact form</h1>
+						<h1 className='mb-2 font-roboto text-4xl'>Contact form</h1>
 						<ContactForm />
 					</div>
 				</div>

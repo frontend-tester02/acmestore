@@ -5,9 +5,12 @@ export interface INavLinks {
 
 export interface IProduct {
 	_id: string
-	name: string
-	image: string
+	title: string
+	description: string
+	size: string
 	price: number
+	previewImage: string
+	published: boolean
 }
 
 export interface IUser {

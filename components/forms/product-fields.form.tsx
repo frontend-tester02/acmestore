@@ -32,6 +32,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { productSchema } from '@/lib/validation'
 import { createProduct } from '@/actions/product.action'
 import { categoryProducts } from '@/constants'
+import { Textarea } from '../ui/textarea'
 
 function ProductsFieldsForm() {
 	const [isLoading, setIsLoading] = useState(false)
@@ -83,7 +84,7 @@ function ProductsFieldsForm() {
 		})
 			.then(() => {
 				form.reset()
-				router.push('/en/seller/my-product')
+				router.push('/seller/my-products')
 			})
 			.finally(() => setIsLoading(false))
 
@@ -109,11 +110,31 @@ function ProductsFieldsForm() {
 									<Input
 										{...field}
 										className='bg-secondary'
-										placeholder='Cup'
+										placeholder='Write product name...'
 										disabled={isLoading}
 									/>
 								</FormControl>
 								<FormMessage />
+							</FormItem>
+						)}
+					/>
+
+					<FormField
+						control={form.control}
+						name='description'
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>
+									Short description <span className='text-red-500'>*</span>
+								</FormLabel>
+								<FormControl>
+									<Textarea
+										{...field}
+										className='h-44 bg-secondary'
+										placeholder='Description'
+										disabled={isLoading}
+									/>
+								</FormControl>
 							</FormItem>
 						)}
 					/>
@@ -134,7 +155,7 @@ function ProductsFieldsForm() {
 											disabled={isLoading}
 										>
 											<SelectTrigger className='w-full bg-secondary'>
-												<SelectValue placeholder={'Select'} />
+												<SelectValue placeholder={'Select product type...'} />
 											</SelectTrigger>
 											<SelectContent>
 												{categoryProducts.map(item => (
@@ -181,6 +202,47 @@ function ProductsFieldsForm() {
 								onChange={onUpload}
 							/>
 						</FormItem>
+					</div>
+
+					<div className='grid gap-4 md:grid-cols-1 lg:grid-cols-2'>
+						<FormField
+							control={form.control}
+							name='color'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Color
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Textarea
+											{...field}
+											className=' bg-secondary'
+											disabled={isLoading}
+										/>
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+						<FormField
+							control={form.control}
+							name='size'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>
+										Size
+										<span className='text-red-500'>*</span>
+									</FormLabel>
+									<FormControl>
+										<Textarea
+											{...field}
+											className=' bg-secondary'
+											disabled={isLoading}
+										/>
+									</FormControl>
+								</FormItem>
+							)}
+						/>
 					</div>
 
 					<div className='flex justify-end gap-4'>

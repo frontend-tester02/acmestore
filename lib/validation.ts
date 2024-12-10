@@ -8,6 +8,9 @@ export const contactSchema = z.object({
 
 export const productSchema = z.object({
 	title: z.string(),
+	description: z.string().min(10),
 	category: z.string(),
+	color: z.string(),
+	size:z.string(),
 	price: z.string().min(0),
 })

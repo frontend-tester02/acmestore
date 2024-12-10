@@ -1,8 +1,13 @@
 'use client'
 
-import * as React from 'react'
 import { TrendingUp } from 'lucide-react'
-import { Label, Pie, PieChart } from 'recharts'
+import {
+	Label,
+	PolarGrid,
+	PolarRadiusAxis,
+	RadialBar,
+	RadialBarChart,
+} from 'recharts'
 
 import {
 	Card,
@@ -12,52 +17,22 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
-import {
-	ChartConfig,
-	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
-} from '@/components/ui/chart'
-
+import { ChartConfig, ChartContainer } from '@/components/ui/chart'
 const chartData = [
-	{ browser: 'chrome', products: 275, fill: 'var(--color-chrome)' },
-	{ browser: 'safari', products: 200, fill: 'var(--color-safari)' },
-	{ browser: 'firefox', products: 287, fill: 'var(--color-firefox)' },
-	{ browser: 'edge', products: 173, fill: 'var(--color-edge)' },
-	{ browser: 'other', products: 190, fill: 'var(--color-other)' },
+	{ browser: 'safari', visitors: 1260, fill: 'var(--color-safari)' },
 ]
 
 const chartConfig = {
-	products: {
-		label: 'Total products',
-	},
-	chrome: {
-		label: 'Chrome',
-		color: 'hsl(var(--chart-1))',
+	visitors: {
+		label: 'Visitors',
 	},
 	safari: {
 		label: 'Safari',
 		color: 'hsl(var(--chart-2))',
 	},
-	firefox: {
-		label: 'Firefox',
-		color: 'hsl(var(--chart-3))',
-	},
-	edge: {
-		label: 'Edge',
-		color: 'hsl(var(--chart-4))',
-	},
-	other: {
-		label: 'Other',
-		color: 'hsl(var(--chart-5))',
-	},
 } satisfies ChartConfig
 
 export function StatisticsChart() {
-	const totalProducts = React.useMemo(() => {
-		return chartData.reduce((acc, curr) => acc + curr.products, 0)
-	}, [])
-
 	return (
 		<Card className='flex flex-col'>
 			<CardHeader className='items-center pb-0'>
@@ -69,18 +44,21 @@ export function StatisticsChart() {
 					config={chartConfig}
 					className='mx-auto aspect-square max-h-[250px]'
 				>
-					<PieChart>
-						<ChartTooltip
-							cursor={false}
-							content={<ChartTooltipContent hideLabel />}
+					<RadialBarChart
+						data={chartData}
+						endAngle={100}
+						innerRadius={80}
+						outerRadius={140}
+					>
+						<PolarGrid
+							gridType='circle'
+							radialLines={false}
+							stroke='none'
+							className='first:fill-muted last:fill-background'
+							polarRadius={[86, 74]}
 						/>
-						<Pie
-							data={chartData}
-							dataKey='products'
-							nameKey='browser'
-							innerRadius={60}
-							strokeWidth={5}
-						>
+						<RadialBar dataKey='visitors' background />
+						<PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
 							<Label
 								content={({ viewBox }) => {
 									if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
@@ -94,24 +72,24 @@ export function StatisticsChart() {
 												<tspan
 													x={viewBox.cx}
 													y={viewBox.cy}
-													className='fill-foreground text-3xl font-bold'
+													className='fill-foreground text-4xl font-bold'
 												>
-													{totalProducts.toLocaleString()}
+													{chartData[0].visitors.toLocaleString()}
 												</tspan>
 												<tspan
 													x={viewBox.cx}
 													y={(viewBox.cy || 0) + 24}
 													className='fill-muted-foreground'
 												>
-													Total products
+													Visitors
 												</tspan>
 											</text>
 										)
 									}
 								}}
 							/>
-						</Pie>
-					</PieChart>
+						</PolarRadiusAxis>
+					</RadialBarChart>
 				</ChartContainer>
 			</CardContent>
 			<CardFooter className='flex-col gap-2 text-sm'>

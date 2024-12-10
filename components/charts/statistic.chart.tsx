@@ -18,21 +18,21 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 import { ChartConfig, ChartContainer } from '@/components/ui/chart'
-const chartData = [
-	{ browser: 'safari', visitors: 1260, fill: 'var(--color-safari)' },
-]
 
-const chartConfig = {
-	visitors: {
-		label: 'Visitors',
-	},
-	safari: {
-		label: 'Safari',
-		color: 'hsl(var(--chart-2))',
-	},
-} satisfies ChartConfig
+function StatisticsChart() {
+	const chartData = [
+		{ browser: 'safari', visitors: 1260, fill: 'var(--color-safari)' },
+	]
 
-export function StatisticsChart() {
+	const chartConfig = {
+		visitors: {
+			label: 'Visitors',
+		},
+		safari: {
+			label: 'Safari',
+			color: 'hsl(var(--chart-2))',
+		},
+	} satisfies ChartConfig
 	return (
 		<Card className='flex flex-col'>
 			<CardHeader className='items-center pb-0'>
@@ -103,3 +103,5 @@ export function StatisticsChart() {
 		</Card>
 	)
 }
+
+export default StatisticsChart

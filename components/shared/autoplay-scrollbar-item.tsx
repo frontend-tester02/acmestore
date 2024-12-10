@@ -1,15 +1,16 @@
 import React from 'react'
 import { AutoplayScrollbar } from './autoplay-scrollbar'
-import { productItems } from '@/constants'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getProducts } from '@/actions/product.action'
 
-function AutoplayScrollbarItem() {
+async function AutoplayScrollbarItem() {
+	const products = await getProducts()
 	return (
 		<>
 			<AutoplayScrollbar direction='horizontal' speed={70}>
 				<div className='flex space-x-4 pb-4'>
-					{productItems.map((item, i) => (
+					{products.map((item, i) => (
 						<div
 							key={i}
 							className='flex shrink-0 items-center justify-center rounded-lg'
@@ -23,7 +24,7 @@ function AutoplayScrollbarItem() {
 						                    rounded-lg border border-neutral-200 bg-white hover:border-blue-600 dark:border-neutral-800 dark:bg-secondary dark:hover:border-blue-600'
 								>
 									<Image
-										src={item.image}
+										src={item.previewImage}
 										alt={item.title}
 										width={300}
 										height={200}
@@ -40,7 +41,11 @@ function AutoplayScrollbarItem() {
 												{item.title}
 											</h3>
 											<p className='rounded-full bg-blue-600 p-2 font-inter text-white'>
-												${item.price}
+												$
+												{item.price.toLocaleString('en-US', {
+													style: 'currency',
+													currency: 'USD',
+												})}
 												<span className='ml-1'>USD</span>
 											</p>
 										</div>

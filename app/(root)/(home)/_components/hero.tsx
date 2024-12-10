@@ -1,4 +1,3 @@
-'use client'
 import HeroProducts from '@/components/cards/hero-products'
 import AutoplayScrollbarItem from '@/components/shared/autoplay-scrollbar-item'
 import Image from 'next/image'

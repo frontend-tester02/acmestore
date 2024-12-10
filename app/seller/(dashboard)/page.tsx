@@ -3,7 +3,7 @@ import ReviewCard from '@/components/cards/review.card'
 import SellerProductCard from '@/components/cards/seller-product.card'
 import { ConsumerChart } from '@/components/charts/consumer.chart'
 import { SalesChart } from '@/components/charts/sales-chart'
-import { StatisticsChart } from '@/components/charts/statistic.chart'
+import StatisticsChart from '@/components/charts/statistic.chart'
 import Header from '@/components/shared/header'
 
 async function Page() {
@@ -12,12 +12,6 @@ async function Page() {
 	return (
 		<>
 			<Header title='Dashboard' description='Welcome to your dashboard' />
-
-			{/* <div className='mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-				<StatisticsCard label='Total products' value='100' Icon={ShoppingBag} />
-				<StatisticsCard label='Total consumers' value='20' Icon={User} />
-				<StatisticsCard label='Total sales' value='20' Icon={GrMoney} />
-			</div> */}
 
 			<div className='mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
 				<StatisticsChart />

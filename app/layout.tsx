@@ -21,6 +21,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
 	title: 'Acme Store',
 	description: 'Acme online shopping store',
+	icons: '/sticker.avif',
 }
 
 function RootLayout({ children }: ChildProps) {

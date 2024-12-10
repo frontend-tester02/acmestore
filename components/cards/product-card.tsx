@@ -1,18 +1,23 @@
-import { productItems } from '@/constants'
+import { getProducts } from '@/actions/product.action'
 import Image from 'next/image'
 import Link from 'next/link'
 
-function ProductCard() {
+async function ProductCard() {
+	const products = await getProducts()
 	return (
 		<>
-			{productItems.map(item => (
-				<Link key={item.title} href={'/'} className='relative mb-2 block'>
+			{products.map(item => (
+				<Link
+					key={item.title}
+					href={`/product/${item._id}`}
+					className='relative mb-2 block'
+				>
 					<div
 						className='group relative flex items-center justify-center gap-4 overflow-hidden
 					rounded-lg border border-neutral-200 bg-white hover:border-blue-600 dark:border-neutral-800 dark:bg-secondary dark:hover:border-blue-600'
 					>
 						<Image
-							src={item.image}
+							src={item.previewImage}
 							alt={item.title}
 							width={295}
 							height={200}
@@ -27,7 +32,11 @@ function ProductCard() {
 							>
 								<h3 className='mr-4 line-clamp-2 grow pl-2'>{item.title}</h3>
 								<p className='rounded-full bg-blue-600 p-2 font-inter text-white'>
-									${item.price}
+									$
+									{item.price.toLocaleString('en-US', {
+										style: 'currency',
+										currency: 'USD',
+									})}
 									<span className='ml-1'>USD</span>
 								</p>
 							</div>

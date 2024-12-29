@@ -10,6 +10,7 @@ const ProductSchema = new Schema(
 		price: Number,
 		previewImage: String,
 		published: { type: Boolean, default: false },
+		seller: { type: Schema.Types.ObjectId, ref: 'User' },
 	},
 	{ timestamps: true }
 )

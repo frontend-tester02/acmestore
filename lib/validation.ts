@@ -11,6 +11,10 @@ export const productSchema = z.object({
 	description: z.string().min(10),
 	category: z.string(),
 	color: z.string(),
-	size:z.string(),
+	size: z.string(),
 	price: z.string().min(0),
+})
+
+export const ProductFieldsSchema = z.object({
+	title: z.string().min(3),
 })

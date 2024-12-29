@@ -3,14 +3,17 @@ import { AutoplayScrollbar } from './autoplay-scrollbar'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getProducts } from '@/actions/product.action'
+import { auth } from '@clerk/nextjs/server'
+import { productItems, products } from '@/constants'
 
 async function AutoplayScrollbarItem() {
-	const products = await getProducts()
+	// const { userId } = await auth()
+	// const products = await getProducts(userId as string)
 	return (
 		<>
 			<AutoplayScrollbar direction='horizontal' speed={70}>
 				<div className='flex space-x-4 pb-4'>
-					{products.map((item, i) => (
+					{productItems.map((item, i) => (
 						<div
 							key={i}
 							className='flex shrink-0 items-center justify-center rounded-lg'
@@ -24,7 +27,7 @@ async function AutoplayScrollbarItem() {
 						                    rounded-lg border border-neutral-200 bg-white hover:border-blue-600 dark:border-neutral-800 dark:bg-secondary dark:hover:border-blue-600'
 								>
 									<Image
-										src={item.previewImage}
+										src={item.image}
 										alt={item.title}
 										width={300}
 										height={200}
@@ -41,11 +44,11 @@ async function AutoplayScrollbarItem() {
 												{item.title}
 											</h3>
 											<p className='rounded-full bg-blue-600 p-2 font-inter text-white'>
-												$
-												{item.price.toLocaleString('en-US', {
+												${item.price}
+												{/* {item.price.toLocaleString('en-US', {
 													style: 'currency',
 													currency: 'USD',
-												})}
+												})} */}
 												<span className='ml-1'>USD</span>
 											</p>
 										</div>

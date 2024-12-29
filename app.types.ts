@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 export interface INavLinks {
 	name: string
 	route: string
@@ -23,8 +24,6 @@ export interface IUser {
 	bio: string
 	phone: string
 	job: string
-	approvedSeller: boolean
-	isAdmin: boolean
 }
 
 export interface IReview {
@@ -33,6 +32,6 @@ export interface IReview {
 	user: IUser
 	createdAt: string
 	_id: string
-	course: IProduct
+	product: IProduct
 	isFlag: boolean
 }

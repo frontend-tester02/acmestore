@@ -30,15 +30,17 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { productSchema } from '@/lib/validation'
-import { createProduct } from '@/actions/product.action'
 import { categoryProducts } from '@/constants'
 import { Textarea } from '../ui/textarea'
+import { useUser } from '@clerk/nextjs'
+import { createProduct } from '@/actions/product.action'
 
 function ProductsFieldsForm() {
 	const [isLoading, setIsLoading] = useState(false)
 	const [previewImage, setPreviewImage] = useState('')
 	const [open, setOpen] = useState(false)
 
+	const { user } = useUser()
 	const router = useRouter()
 
 	const form = useForm<z.infer<typeof productSchema>>({
@@ -77,11 +79,14 @@ function ProductsFieldsForm() {
 		}
 		setIsLoading(true)
 		const { price } = values
-		const promise = createProduct({
-			...values,
-			price: +price,
-			previewImage,
-		})
+		const promise = createProduct(
+			{
+				...values,
+				price: +price,
+				previewImage,
+			},
+			user?.id as string
+		)
 			.then(() => {
 				form.reset()
 				router.push('/seller/my-products')

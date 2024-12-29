@@ -1,4 +1,5 @@
 'use client'
+
 import ReactStars from 'react-stars'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { formatDistanceToNow } from 'date-fns'

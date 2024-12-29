@@ -5,9 +5,11 @@ import { ConsumerChart } from '@/components/charts/consumer.chart'
 import { SalesChart } from '@/components/charts/sales-chart'
 import StatisticsChart from '@/components/charts/statistic.chart'
 import Header from '@/components/shared/header'
+import { auth } from '@clerk/nextjs/server'
 
 async function Page() {
-	const products = await getProducts()
+	const { userId } = await auth()
+	const products = await getProducts(userId!)
 
 	return (
 		<>
@@ -27,7 +29,7 @@ async function Page() {
 			<div className='mt-4 grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3'>
 				{products.slice(0, 3).map(item => (
 					<SellerProductCard
-						key={item._id}
+						key={item.title}
 						product={JSON.parse(JSON.stringify(item))}
 					/>
 				))}

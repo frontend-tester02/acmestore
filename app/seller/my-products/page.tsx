@@ -1,9 +1,11 @@
 import { getProducts } from '@/actions/product.action'
 import SellerProductCard from '@/components/cards/seller-product.card'
 import Header from '@/components/shared/header'
+import { auth } from '@clerk/nextjs/server'
 
 async function Page() {
-	const products = await getProducts()
+	const { userId } = await auth()
+	const products = await getProducts(userId as string)
 
 	return (
 		<>

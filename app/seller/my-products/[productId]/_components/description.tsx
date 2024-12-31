@@ -1,5 +1,4 @@
 'use client'
-
 import { updateProduct } from '@/actions/product.action'
 import { IProduct } from '@/app.types'
 import FillLoading from '@/components/shared/fill-loading'
@@ -12,50 +11,40 @@ import {
 	FormItem,
 	FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { Textarea } from '@/components/ui/textarea'
 import UseToggleEdit from '@/hooks/use-toggle-edit'
-import { ProductFieldsSchema } from '@/lib/validation'
+import { descriptionSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Edit2, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-function ProductFields(product: IProduct) {
+function Description(product: IProduct) {
 	const { state, onToggle } = UseToggleEdit()
 	return (
 		<Card>
 			<CardContent className='relative p-2'>
 				<div className='flex items-center justify-between'>
-					<span className='text-lg font-medium'>Product Name</span>
+					<span className='text-lg font-medium'>Description</span>
 					<Button size={'icon'} variant={'ghost'} onClick={onToggle}>
 						{state ? <X /> : <Edit2 />}
 					</Button>
 				</div>
-
 				<Separator className='my-3' />
-
 				{state ? (
 					<Forms product={product} onToggle={onToggle} />
 				) : (
-					<div className='flex flex-col space-y-2'>
-						<div className='flex items-center gap-2'>
-							<span className='font-roboto font-bold text-muted-foreground'>
-								Name:
-							</span>
-							<span className='font-medium'>{product.title}</span>
-						</div>
-						<div className='flex items-center gap-2'>
-							<span className='font-roboto font-bold text-muted-foreground'>
-								Slug:
-							</span>
-							<span className='font-medium'>
-								{product.slug ?? 'Not configured'}
-							</span>
-						</div>
+					<div className='flex items-center gap-2'>
+						<span className='self-start font-roboto font-bold text-muted-foreground'>
+							Description:
+						</span>
+						<span className='line-clamp-3 font-medium'>
+							{product.description}
+						</span>
 					</div>
 				)}
 			</CardContent>
@@ -63,7 +52,7 @@ function ProductFields(product: IProduct) {
 	)
 }
 
-export default ProductFields
+export default Description
 
 interface FormProps {
 	product: IProduct
@@ -74,25 +63,25 @@ function Forms({ product, onToggle }: FormProps) {
 	const [isLoading, setIsLoading] = useState(false)
 	const pathname = usePathname()
 
-	const form = useForm<z.infer<typeof ProductFieldsSchema>>({
-		resolver: zodResolver(ProductFieldsSchema),
+	const form = useForm<z.infer<typeof descriptionSchema>>({
+		resolver: zodResolver(descriptionSchema),
 		defaultValues: {
-			title: product.title,
+			description: product.description,
 		},
 	})
 
-	const onSubmit = (values: z.infer<typeof ProductFieldsSchema>) => {
+	const onSubmit = (values: z.infer<typeof descriptionSchema>) => {
 		setIsLoading(true)
 		const promise = updateProduct(product._id, values, pathname)
 			.then(() => onToggle())
 			.finally(() => setIsLoading(false))
-
 		toast.promise(promise, {
 			loading: 'Loading...',
-			success: 'Successfully updated!',
+			success: 'Successfuly updated!',
 			error: 'Something went wrong!',
 		})
 	}
+
 	return (
 		<>
 			{isLoading && <FillLoading />}
@@ -100,23 +89,11 @@ function Forms({ product, onToggle }: FormProps) {
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
 					<FormField
 						control={form.control}
-						name='title'
+						name='description'
 						render={({ field }) => (
 							<FormItem>
 								<FormControl>
-									<Input {...field} disabled={isLoading} />
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='slug'
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<Input {...field} disabled={isLoading} />
+									<Textarea {...field} disabled={isLoading} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

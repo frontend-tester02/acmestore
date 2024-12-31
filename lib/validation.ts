@@ -11,8 +11,28 @@ export const productSchema = z.object({
 	description: z.string().min(10),
 	category: z.string(),
 	price: z.string().min(0),
+	color: z.string(),
+	size: z.string(),
 })
 
 export const ProductFieldsSchema = z.object({
 	title: z.string().min(3),
+	slug: z.string(),
+})
+
+export const descriptionSchema = z.object({
+	description: z.string(),
+})
+
+export const selectFieldsSchema = z.object({
+	category: z.string(),
+})
+
+export const informationSchema = z.object({
+	color: z.string(),
+	size: z.string(),
+})
+
+export const priceSchema = z.object({
+	price: z.string(),
 })

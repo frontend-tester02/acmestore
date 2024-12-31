@@ -201,4 +201,16 @@ export const sellerNavLinks = [
 	{ label: 'Settings', route: '/seller/settings', icon: Settings2 },
 ]
 
-export const categoryProducts = ['Bags', 'Shoes', 'T-shirts', 'Cup']
+export const categoryProducts = [
+	'Bags',
+	'Shoes',
+	'T-shirts',
+	'Headwear',
+	'Electronics',
+	'Drinkware',
+	'Hoodies',
+	'Jackets',
+	'Kids',
+	'Pets',
+	'Stikers',
+]

@@ -84,6 +84,7 @@ function ProductsFieldsForm() {
 				...values,
 				price: +price,
 				previewImage,
+				size: '',
 			},
 			user?.id as string
 		)

@@ -1,5 +1,4 @@
 'use client'
-
 import { updateProduct } from '@/actions/product.action'
 import { IProduct } from '@/app.types'
 import FillLoading from '@/components/shared/fill-loading'
@@ -10,60 +9,59 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
-	FormMessage,
+	FormLabel,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
+import { categoryProducts } from '@/constants'
 import UseToggleEdit from '@/hooks/use-toggle-edit'
-import { ProductFieldsSchema } from '@/lib/validation'
+import { selectFieldsSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Edit2, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-function ProductFields(product: IProduct) {
+function SelectFields(product: IProduct) {
 	const { state, onToggle } = UseToggleEdit()
 	return (
 		<Card>
 			<CardContent className='relative p-2'>
 				<div className='flex items-center justify-between'>
-					<span className='text-lg font-medium'>Product Name</span>
+					<span className='text-lg font-medium'>Select fields</span>
 					<Button size={'icon'} variant={'ghost'} onClick={onToggle}>
 						{state ? <X /> : <Edit2 />}
 					</Button>
 				</div>
-
 				<Separator className='my-3' />
-
 				{state ? (
 					<Forms product={product} onToggle={onToggle} />
 				) : (
-					<div className='flex flex-col space-y-2'>
+					<>
 						<div className='flex items-center gap-2'>
-							<span className='font-roboto font-bold text-muted-foreground'>
-								Name:
+							<span className='self-start font-roboto font-bold text-muted-foreground'>
+								Category:
 							</span>
-							<span className='font-medium'>{product.title}</span>
-						</div>
-						<div className='flex items-center gap-2'>
-							<span className='font-roboto font-bold text-muted-foreground'>
-								Slug:
-							</span>
-							<span className='font-medium'>
-								{product.slug ?? 'Not configured'}
+							<span className='line-clamp-3 font-medium'>
+								{product.category}
 							</span>
 						</div>
-					</div>
+					</>
 				)}
 			</CardContent>
 		</Card>
 	)
 }
 
-export default ProductFields
+export default SelectFields
 
 interface FormProps {
 	product: IProduct
@@ -74,25 +72,25 @@ function Forms({ product, onToggle }: FormProps) {
 	const [isLoading, setIsLoading] = useState(false)
 	const pathname = usePathname()
 
-	const form = useForm<z.infer<typeof ProductFieldsSchema>>({
-		resolver: zodResolver(ProductFieldsSchema),
+	const form = useForm<z.infer<typeof selectFieldsSchema>>({
+		resolver: zodResolver(selectFieldsSchema),
 		defaultValues: {
-			title: product.title,
+			category: product.category,
 		},
 	})
 
-	const onSubmit = (values: z.infer<typeof ProductFieldsSchema>) => {
+	const onSubmit = (values: z.infer<typeof selectFieldsSchema>) => {
 		setIsLoading(true)
 		const promise = updateProduct(product._id, values, pathname)
 			.then(() => onToggle())
 			.finally(() => setIsLoading(false))
-
 		toast.promise(promise, {
 			loading: 'Loading...',
-			success: 'Successfully updated!',
+			success: 'Successfuly updated!',
 			error: 'Something went wrong!',
 		})
 	}
+
 	return (
 		<>
 			{isLoading && <FillLoading />}
@@ -100,25 +98,30 @@ function Forms({ product, onToggle }: FormProps) {
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
 					<FormField
 						control={form.control}
-						name='title'
+						name='category'
 						render={({ field }) => (
 							<FormItem>
+								<FormLabel>
+									Language<span className='text-red-500'>*</span>
+								</FormLabel>
 								<FormControl>
-									<Input {...field} disabled={isLoading} />
+									<Select
+										defaultValue={field.value}
+										onValueChange={field.onChange}
+										disabled={isLoading}
+									>
+										<SelectTrigger className='w-full bg-secondary'>
+											<SelectValue placeholder={'Select'} />
+										</SelectTrigger>
+										<SelectContent>
+											{categoryProducts.map(item => (
+												<SelectItem key={item} value={item}>
+													{item}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
 								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name='slug'
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<Input {...field} disabled={isLoading} />
-								</FormControl>
-								<FormMessage />
 							</FormItem>
 						)}
 					/>

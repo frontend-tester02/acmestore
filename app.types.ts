@@ -8,10 +8,13 @@ export interface IProduct {
 	_id: string
 	title: string
 	description: string
+	category: string
+	color: string
 	size: string
 	price: number
 	previewImage: string
 	published: boolean
+	slug: string
 }
 
 export interface IUser {

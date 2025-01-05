@@ -11,7 +11,7 @@ async function ProductCard() {
 			{products.map(item => (
 				<Link
 					key={item.title}
-					href={`/product/${item.title}`}
+					href={`/product/${item.slug}`}
 					className='relative mb-2 block'
 				>
 					<div

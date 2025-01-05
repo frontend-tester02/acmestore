@@ -78,6 +78,7 @@ function Forms({ product, onToggle }: FormProps) {
 		resolver: zodResolver(ProductFieldsSchema),
 		defaultValues: {
 			title: product.title,
+			slug: product.slug,
 		},
 	})
 

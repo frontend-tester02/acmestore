@@ -7,6 +7,7 @@ import { ICreateProduct } from './types'
 import { IProduct } from '@/app.types'
 import { revalidatePath } from 'next/cache'
 import User from '@/database/user.model'
+import { cache } from 'react'
 
 export const createProduct = async (data: ICreateProduct, clerkId: string) => {
 	try {
@@ -65,3 +66,31 @@ export const deleteProduct = async (id: string, path: string) => {
 		throw new Error('Something went wrong while deleting product!')
 	}
 }
+
+export const getFeaturedProduct = cache(async () => {
+	try {
+		await connectToDatabase()
+		const products = await Product.find().select('_id size color')
+		return products
+	} catch (error) {
+		throw new Error('Somehthing went wrong while getting fetarued product')
+	}
+})
+
+export const getDetailedProduct = cache(async (slug: string) => {
+	try {
+		await connectToDatabase()
+		const product = await Product.findOne({ slug }).select(
+			'title description seller color size price previewImage'
+		)
+
+		if (!product) {
+			throw new Error('Not found')
+		}
+		return product
+	} catch (error) {
+		console.log(error)
+
+		throw new Error('Something went wrong while getting detailed product')
+	}
+})

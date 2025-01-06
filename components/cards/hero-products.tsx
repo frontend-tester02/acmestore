@@ -6,11 +6,15 @@ import React from 'react'
 
 async function HeroProducts() {
 	const { userId } = await auth()
-	const products = await getProducts(userId!)
+	const result = await getProducts({ clerkId: userId! })
 	return (
 		<>
-			{products.slice(1, 3).map(item => (
-				<Link key={item.title} href={'/'} className='relative mb-2 block'>
+			{result.products.slice(1, 3).map(item => (
+				<Link
+					key={item.title}
+					href={`/product/${item.slug}`}
+					className='relative mb-2 block'
+				>
 					<div
 						className='group relative flex items-center justify-center gap-4 overflow-hidden
             rounded-lg border border-neutral-200 bg-white hover:border-blue-600 dark:border-neutral-800 dark:bg-secondary dark:hover:border-blue-600'

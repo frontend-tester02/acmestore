@@ -29,6 +29,10 @@ export interface IUser {
 	job: string
 }
 
+export interface SearchParamsProps {
+	searchParams: { [key: string]: string | undefined }
+}
+
 export interface IReview {
 	data: string
 	rating: number

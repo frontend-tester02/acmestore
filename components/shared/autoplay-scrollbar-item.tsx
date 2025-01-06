@@ -7,18 +7,18 @@ import { auth } from '@clerk/nextjs/server'
 
 async function AutoplayScrollbarItem() {
 	const { userId } = await auth()
-	const products = await getProducts(userId!)
+	const result = await getProducts({ clerkId: userId! })
 	return (
 		<>
 			<AutoplayScrollbar direction='horizontal' speed={70}>
 				<div className='flex space-x-4 pb-4'>
-					{products.slice(3).map((item, i) => (
+					{result.products.slice(3).map((item, i) => (
 						<div
 							key={i}
 							className='flex shrink-0 items-center justify-center rounded-lg'
 						>
 							<Link
-								href={'/'}
+								href={`/product/${item.slug}`}
 								className='relative mb-2 block w-[500px] max-md:w-[300px] md:mt-2'
 							>
 								<div

@@ -9,7 +9,7 @@ import { auth } from '@clerk/nextjs/server'
 
 async function Page() {
 	const { userId } = await auth()
-	const products = await getProducts(userId!)
+	const result = await getProducts({ clerkId: userId! })
 
 	return (
 		<>
@@ -27,7 +27,7 @@ async function Page() {
 			/>
 
 			<div className='mt-4 grid grid-cols-1 gap-4  md:grid-cols-2 lg:grid-cols-3'>
-				{products.slice(0, 3).map(item => (
+				{result.products.slice(0, 3).map(item => (
 					<SellerProductCard
 						key={item.title}
 						product={JSON.parse(JSON.stringify(item))}

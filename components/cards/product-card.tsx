@@ -5,10 +5,10 @@ import Link from 'next/link'
 
 async function ProductCard() {
 	const { userId } = await auth()
-	const products = await getProducts(userId!)
+	const result = await getProducts({clerkId: userId!})
 	return (
 		<>
-			{products.map(item => (
+			{result.products.map(item => (
 				<div key={item._id} className='flex flex-col gap-2'>
 					<div
 						className='group relative flex items-center justify-center gap-4 overflow-hidden

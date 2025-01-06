@@ -3,7 +3,7 @@
 
 import Product from '@/database/product.model'
 import { connectToDatabase } from '@/lib/mongoose'
-import { ICreateProduct } from './types'
+import { GetProductParams, ICreateProduct } from './types'
 import { IProduct } from '@/app.types'
 import { revalidatePath } from 'next/cache'
 import User from '@/database/user.model'
@@ -20,13 +20,22 @@ export const createProduct = async (data: ICreateProduct, clerkId: string) => {
 	}
 }
 
-export const getProducts = async (clerkId: string) => {
+export const getProducts = async (params: GetProductParams) => {
 	try {
 		await connectToDatabase()
+		const { clerkId, page = 1, pageSize = 6 } = params
+		const skipAmount = (page - 1) * pageSize
 		const user = await User.findOne({ clerkId })
-		const products = await Product.find({ seller: user._id })
+		const products = await Product.find({ seller: user })
+			.skip(skipAmount)
+			.limit(pageSize)
 
-		return products as IProduct[]
+		const totalProducts = await Product.find({
+			seller: user._id,
+		}).countDocuments()
+
+		const isNext = totalProducts > skipAmount + products.length
+		return { products, isNext, totalProducts }
 	} catch (error) {
 		console.error(error)
 		throw new Error('Something went wrong while getting product!')

@@ -38,10 +38,10 @@ function ProductInfo(product: IProduct) {
 								<Button
 									key={item}
 									onClick={() => setSellectedColor(item)}
-									className={`h-6 w-20 rounded-full border bg-black text-white hover:bg-black ${
+									className={`h-6 w-20 rounded-full border bg-white text-black hover:text-white dark:bg-black dark:text-white ${
 										sellectedColor === item
-											? 'border-blue-600 bg-black text-white transition-colors'
-											: 'border-gray-600 hover:border-gray-400'
+											? 'border-blue-700 bg-black text-white transition-colors'
+											: 'border-gray-600'
 									}`}
 								>
 									{item}
@@ -59,10 +59,10 @@ function ProductInfo(product: IProduct) {
 								<Button
 									key={item}
 									onClick={() => setSellectedSize(item)}
-									className={`h-6 w-20 rounded-full border bg-black text-white hover:bg-black ${
+									className={`h-6 w-20 rounded-full border bg-white text-black hover:text-white dark:bg-black dark:text-white ${
 										sellectedSize === item
-											? 'border-blue-600 bg-black text-white transition-colors'
-											: 'border-gray-600 hover:border-gray-400'
+											? 'border-blue-700 bg-black text-white transition-colors'
+											: 'border-gray-600'
 									}`}
 								>
 									{item}

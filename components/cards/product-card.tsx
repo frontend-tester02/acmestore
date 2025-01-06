@@ -9,23 +9,25 @@ async function ProductCard() {
 	return (
 		<>
 			{products.map(item => (
-				<Link
-					key={item.title}
-					href={`/product/${item.slug}`}
-					className='relative mb-2 block'
-				>
+				<div key={item._id} className='flex flex-col gap-2'>
 					<div
 						className='group relative flex items-center justify-center gap-4 overflow-hidden
 					rounded-lg border border-neutral-200 bg-white hover:border-blue-600 dark:border-neutral-800 dark:bg-secondary dark:hover:border-blue-600'
 					>
-						<Image
-							src={item.previewImage}
-							alt={item.title}
-							width={295}
-							height={200}
-							className='relative object-contain transition duration-300 ease-in-out
-								 hover:border-blue-500 group-hover:scale-105'
-						/>
+						<Link
+							key={item.title}
+							href={`/product/${item.slug}`}
+							className='relative mb-2 block'
+						>
+							<Image
+								src={item.previewImage}
+								alt={item.title}
+								width={295}
+								height={200}
+								className='relative object-contain transition duration-300 ease-in-out
+							hover:border-blue-500 group-hover:scale-105'
+							/>
+						</Link>
 
 						<div className='absolute bottom-0 left-0 flex px-4 pb-4'>
 							<div
@@ -44,7 +46,7 @@ async function ProductCard() {
 							</div>
 						</div>
 					</div>
-				</Link>
+				</div>
 			))}
 		</>
 	)

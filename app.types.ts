@@ -36,5 +36,4 @@ export interface IReview {
 	createdAt: string
 	_id: string
 	product: IProduct
-	isFlag: boolean
 }

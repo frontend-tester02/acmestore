@@ -1,11 +1,10 @@
 import { getProducts } from '@/actions/product.action'
 import ReviewCard from '@/components/cards/review.card'
 import SellerProductCard from '@/components/cards/seller-product.card'
-import { ConsumerChart } from '@/components/charts/consumer.chart'
-import { SalesChart } from '@/components/charts/sales-chart'
-import StatisticsChart from '@/components/charts/statistic.chart'
+import StatisticsCard from '@/components/cards/statistic.card'
 import Header from '@/components/shared/header'
 import { auth } from '@clerk/nextjs/server'
+import { ShoppingBag } from 'lucide-react'
 
 async function Page() {
 	const { userId } = await auth()
@@ -16,9 +15,21 @@ async function Page() {
 			<Header title='Dashboard' description='Welcome to your dashboard' />
 
 			<div className='mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-				<StatisticsChart />
-				<ConsumerChart />
-				<SalesChart />
+				<StatisticsCard
+					label='Total products'
+					value={result.totalProducts.toString()}
+					Icon={ShoppingBag}
+				/>
+				<StatisticsCard
+					label='Total products'
+					value={result.totalProducts.toString()}
+					Icon={ShoppingBag}
+				/>
+				<StatisticsCard
+					label='Total products'
+					value={result.totalProducts.toString()}
+					Icon={ShoppingBag}
+				/>
 			</div>
 
 			<Header

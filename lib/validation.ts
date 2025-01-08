@@ -36,3 +36,9 @@ export const informationSchema = z.object({
 export const priceSchema = z.object({
 	price: z.string(),
 })
+
+export const profileSchema = z.object({
+	bio: z.string().min(10).optional(),
+	phone: z.string().optional(),
+	job: z.string().min(3).optional(),
+})

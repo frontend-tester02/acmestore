@@ -1,3 +1,5 @@
+import { IUser } from '@/app.types'
+
 export interface ICreateProduct {
 	title: string
 	description: string
@@ -16,11 +18,8 @@ export interface ICreateUser {
 
 export interface IUpdateUser {
 	clerkId: string
-	updatedData: {
-		fullName: string
-		picture: string
-		email: string
-	}
+	path: string
+	updatedData: Partial<IUser>
 }
 
 export interface GetProductParams {

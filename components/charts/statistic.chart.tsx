@@ -1,6 +1,5 @@
 'use client'
 
-import { TrendingUp } from 'lucide-react'
 import {
 	Label,
 	PolarGrid,
@@ -9,14 +8,7 @@ import {
 	RadialBarChart,
 } from 'recharts'
 
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ChartConfig, ChartContainer } from '@/components/ui/chart'
 
 function StatisticsChart() {
@@ -36,8 +28,7 @@ function StatisticsChart() {
 	return (
 		<Card className='flex flex-col'>
 			<CardHeader className='items-center pb-0'>
-				<CardTitle>Total products</CardTitle>
-				<CardDescription>January - June 2024</CardDescription>
+				<CardTitle className='text-2xl'>Total products</CardTitle>
 			</CardHeader>
 			<CardContent className='flex-1 pb-0'>
 				<ChartContainer
@@ -81,7 +72,7 @@ function StatisticsChart() {
 													y={(viewBox.cy || 0) + 24}
 													className='fill-muted-foreground'
 												>
-													Visitors
+													Products
 												</tspan>
 											</text>
 										)
@@ -92,14 +83,6 @@ function StatisticsChart() {
 					</RadialBarChart>
 				</ChartContainer>
 			</CardContent>
-			<CardFooter className='flex-col gap-2 text-sm'>
-				<div className='flex items-center gap-2 font-medium leading-none'>
-					Trending up by 5.2% this month <TrendingUp className='size-4' />
-				</div>
-				<div className='leading-none text-muted-foreground'>
-					Showing total visitors for the last 6 months
-				</div>
-			</CardFooter>
 		</Card>
 	)
 }

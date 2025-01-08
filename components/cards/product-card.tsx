@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 async function ProductCard() {
 	const { userId } = await auth()
-	const result = await getProducts({clerkId: userId!})
+	const result = await getProducts({ clerkId: userId! })
 	return (
 		<>
 			{result.products.map(item => (
@@ -22,7 +22,7 @@ async function ProductCard() {
 							<Image
 								src={item.previewImage}
 								alt={item.title}
-								width={295}
+								width={320}
 								height={200}
 								className='relative object-contain transition duration-300 ease-in-out
 							hover:border-blue-500 group-hover:scale-105'

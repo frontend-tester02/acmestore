@@ -10,7 +10,7 @@ function SidebarLeft() {
 	return (
 		<>
 			<div
-				className='fixed inset-y-0 left-0 -mb-4 mt-14 w-[200px] gap-4 border-l bg-gradient-to-b from-background to-secondary 
+				className='fixed inset-y-0 left-0 -mb-4 mt-14 w-[170px] gap-4 border-l bg-gradient-to-b from-background to-secondary 
         p-4 max-md:hidden max-md:w-full max-md:px-2'
 			>
 				<div className='flex flex-col space-y-1'>

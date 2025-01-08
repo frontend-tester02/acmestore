@@ -11,7 +11,7 @@ function SidebarRight() {
 	return (
 		<>
 			<div
-				className='fixed inset-y-0 right-0 mt-14 w-[200px] border-l bg-gradient-to-b from-background to-secondary p-4 max-md:hidden max-md:w-20 max-md:px-2 
+				className='fixed inset-y-0 right-0 mt-14 w-[170px] border-l bg-gradient-to-b from-background to-secondary p-4 max-md:hidden max-md:w-20 max-md:px-2 
         '
 			>
 				<div className='flex flex-col'>

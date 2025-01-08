@@ -76,7 +76,7 @@ function ProductInfo(product: IProduct) {
 
 				<Button
 					type='button'
-					className='flex w-full self-end rounded-full bg-blue-500 p-4 transition-opacity duration-200 hover:bg-blue-500'
+					className='flex w-full self-end rounded-full bg-blue-600 p-4 text-xl transition-opacity duration-200 hover:bg-blue-500'
 					style={{ opacity: isSelectionComplete ? 1 : 0.5 }}
 					disabled={!isSelectionComplete}
 				>

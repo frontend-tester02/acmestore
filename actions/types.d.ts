@@ -27,3 +27,9 @@ export interface GetProductParams {
 	page?: number
 	pageSize?: number
 }
+export interface GetAllProductParams {
+	searchQuery?: string
+	filter?: string
+	maxPrice?: number
+	minPrice?: number
+}

@@ -3,11 +3,12 @@
 
 import Product from '@/database/product.model'
 import { connectToDatabase } from '@/lib/mongoose'
-import { GetProductParams, ICreateProduct } from './types'
+import { GetAllProductParams, GetProductParams, ICreateProduct } from './types'
 import { IProduct } from '@/app.types'
 import { revalidatePath } from 'next/cache'
 import User from '@/database/user.model'
 import { cache } from 'react'
+import { FilterQuery } from 'mongoose'
 
 export const createProduct = async (data: ICreateProduct, clerkId: string) => {
 	try {
@@ -103,3 +104,89 @@ export const getDetailedProduct = cache(async (slug: string) => {
 		throw new Error('Something went wrong while getting detailed product')
 	}
 })
+
+export const getAllProducts = async (params: GetAllProductParams) => {
+	try {
+		await connectToDatabase()
+		const { searchQuery, filter, maxPrice, minPrice } = params
+
+		const query: FilterQuery<IProduct> = {}
+
+		if (searchQuery) {
+			query.$or = [
+				{
+					title: { $regex: new RegExp(searchQuery, 'i') },
+				},
+			]
+		}
+
+		if (minPrice !== undefined || maxPrice !== undefined) {
+			query.price = {}
+			if (minPrice !== undefined) {
+				query.price.$gte = minPrice
+			}
+			if (maxPrice !== undefined) {
+				query.price.$lte = maxPrice
+			}
+		}
+
+		let sortOptions = {}
+
+		switch (filter) {
+			case 'trending':
+				sortOptions = { createdAt: -1 }
+				break
+			case 'lowest-price':
+				sortOptions = { price: 1 }
+				break
+			case 'highest-price':
+				sortOptions = { price: -1 }
+				break
+			case 'bags':
+				query.category = 'bags'
+				break
+			case 'drinkware':
+				query.category = 'drinkware'
+				break
+			case 'electronics':
+				query.category = 'electronics'
+				break
+			case 'footware':
+				query.category = 'footware'
+				break
+			case 'headware':
+				query.category = 'headware'
+				break
+			case 'hoodies':
+				query.category = 'hoodies'
+				break
+			case 'jackets':
+				query.category = 'jackets'
+				break
+			case 'kids':
+				query.category = 'kids'
+				break
+			case 'pets':
+				query.category = 'pets'
+				break
+			case 'shirts':
+				query.category = 'shirts'
+				break
+			case 'stikers':
+				query.category = 'stikers'
+				break
+			default:
+				break
+		}
+
+		const products = await Product.find(query)
+			.select('previewImage  title slug _id price seller')
+			.sort(sortOptions)
+
+		const totalProducts = await Product.countDocuments(query)
+
+		return { products, totalProducts }
+	} catch (error) {
+		throw new Error('Something went wrong while getting all products')
+	}
+}

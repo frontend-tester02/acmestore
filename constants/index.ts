@@ -129,12 +129,34 @@ export const products = [
 	{ route: '/search/stikers', name: 'Stikers' },
 ]
 
-export const sortProducts = [
-	{ label: 'trending', name: 'Trending' },
-	{ label: 'latest', name: 'Latest arrivals' },
-	{ label: 'lowest-products', name: 'Lowest products' },
-	{ label: 'highest-products', name: 'Highest products' },
+export const categoryProducts = [
+	{ label: 'All', name: 'all' },
+	{ label: 'Bags', name: 'bags' },
+	{ label: 'Drinkware', name: 'drinkware' },
+	{ label: 'Electronics', name: 'electronics' },
+	{ label: 'Footware', name: 'footware' },
+	{ label: 'Headware', name: 'headware' },
+	{ label: 'Hoodies', name: 'hoodies' },
+	{ label: 'Jackets', name: 'jackets' },
+	{ label: 'Kids', name: 'kids' },
+	{ label: 'Pets', name: 'pets' },
+	{ label: 'Shirts', name: 'shirts' },
+	{ label: 'Stikers', name: 'stikers' },
 ]
+
+export const sortProducts = [
+	{ label: 'Trending', name: 'trending' },
+	{ label: 'Latest arrivals', name: 'latest-arrivals' },
+	{ label: 'Lowest price', name: 'lowest-price' },
+	{ label: 'Highest price', name: 'highest-price' },
+]
+
+// export const sortProducts = [
+// 	'trending',
+// 	'latest-arrivals',
+// 	'lowest-price',
+// 	'highest-price',
+// ]
 
 export const faqs = [
 	{
@@ -199,18 +221,4 @@ export const sellerNavLinks = [
 	},
 	{ label: 'Reviews', route: '/seller/reviews', icon: MessageSquareMore },
 	{ label: 'Settings', route: '/seller/settings', icon: Settings2 },
-]
-
-export const categoryProducts = [
-	'Bags',
-	'Shoes',
-	'T-shirts',
-	'Headwear',
-	'Electronics',
-	'Drinkware',
-	'Hoodies',
-	'Jackets',
-	'Kids',
-	'Pets',
-	'Stikers',
 ]

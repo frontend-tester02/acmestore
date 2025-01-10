@@ -10,14 +10,14 @@ interface UrlQueryParams {
 	params: string
 	key: string
 	value: string | null
-	toCourses?: boolean
+	toProducts?: boolean
 }
 
 export const formUrlQuery = ({
 	key,
 	params,
 	value,
-	toCourses = false,
+	toProducts = false,
 }: UrlQueryParams) => {
 	const currentUrl = qs.parse(params)
 
@@ -25,8 +25,8 @@ export const formUrlQuery = ({
 
 	return qs.stringifyUrl(
 		{
-			url: toCourses
-				? `/${window.location.pathname.split('/')[1]}/courses`
+			url: toProducts
+				? `/${window.location.pathname.split('/')[1]}/products`
 				: window.location.pathname,
 			query: currentUrl,
 		},

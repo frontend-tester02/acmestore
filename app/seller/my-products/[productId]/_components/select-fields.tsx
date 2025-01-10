@@ -115,8 +115,8 @@ function Forms({ product, onToggle }: FormProps) {
 										</SelectTrigger>
 										<SelectContent>
 											{categoryProducts.map(item => (
-												<SelectItem key={item} value={item}>
-													{item}
+												<SelectItem key={item.name} value={item.name}>
+													{item.name}
 												</SelectItem>
 											))}
 										</SelectContent>

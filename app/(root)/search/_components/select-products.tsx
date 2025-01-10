@@ -62,7 +62,7 @@ function SelectProducts() {
 									pathname.slice(3) === item.label ? 'secondary' : 'ghost'
 								}
 							>
-								<SelectItem value={item.label}>{item.label}</SelectItem>
+								<SelectItem value={item.name}>{item.label}</SelectItem>
 							</Button>
 						))}
 					</SelectContent>

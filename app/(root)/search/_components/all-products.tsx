@@ -27,7 +27,7 @@ async function AllProducts({ result }: Props) {
 				{products.length === 0 && (
 					<NoResult
 						title='There are no products to show'
-						description='"Find the products that suit you! 🚀 We currently do not have any products that match your request. Will be added soon! 💡"'
+						description='Find the products that suit you! 🚀 We currently do not have any products that match your request. Will be added soon! 💡'
 					/>
 				)}
 			</div>

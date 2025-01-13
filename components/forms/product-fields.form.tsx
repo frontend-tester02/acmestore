@@ -25,7 +25,7 @@ import { ChangeEvent, useState } from 'react'
 import { getDownloadURL, ref, uploadString } from 'firebase/storage'
 import { storage } from '@/lib/firebase'
 import { ImageDown } from 'lucide-react'
-import { Dialog, DialogContent, DialogTitle } from '../ui/dialog'
+import { Dialog, DialogContent } from '../ui/dialog'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
@@ -165,8 +165,8 @@ function ProductsFieldsForm() {
 											</SelectTrigger>
 											<SelectContent>
 												{categoryProducts.map(item => (
-													<SelectItem key={item} value={item}>
-														{item}
+													<SelectItem key={item.name} value={item.name}>
+														{item.name}
 													</SelectItem>
 												))}
 											</SelectContent>
@@ -279,7 +279,6 @@ function ProductsFieldsForm() {
 
 			<Dialog open={open} onOpenChange={setOpen}>
 				<DialogContent>
-					<DialogTitle></DialogTitle>
 					<div className='relative h-72'>
 						<Image
 							src={previewImage}

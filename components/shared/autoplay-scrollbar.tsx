@@ -4,9 +4,9 @@ import React, { useRef, useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Play, Pause } from 'lucide-react'
 
-interface AutoplayScrollbarProps {
+interface Props {
 	children: React.ReactNode
-	speed?: number // Pixels per second
+	speed?: number
 	direction?: 'vertical' | 'horizontal'
 }
 
@@ -14,7 +14,7 @@ export function AutoplayScrollbar({
 	children,
 	speed = 30,
 	direction = 'vertical',
-}: AutoplayScrollbarProps) {
+}: Props) {
 	const scrollContainerRef = useRef<HTMLDivElement>(null)
 	const [isScrolling, setIsScrolling] = useState(true)
 	const [reachedEnd, setReachedEnd] = useState(false)

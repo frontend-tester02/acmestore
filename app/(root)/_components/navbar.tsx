@@ -7,14 +7,17 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import GlobalSearch from './global-search'
 import ModeToggle from '@/components/shared/mode-toggle'
-import { LogIn, ShoppingCart } from 'lucide-react'
+import { LogIn } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Mobile from './mobile'
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
 import UserBox from '@/components/shared/user-box'
+import { useCart } from '@/hooks/use-cart'
+import ShoopingCart from './shooping-cart'
 
 function Navbar() {
 	const pathname = usePathname()
+	const { cartsLength } = useCart()
 	return (
 		<div className='fixed inset-0 z-40 h-16 bg-background/70 backdrop-blur-xl'>
 			<div className='container mx-auto flex h-full max-w-screen-2xl items-center justify-between gap-4 border-b px-4'>
@@ -43,8 +46,21 @@ function Navbar() {
 				<div className='flex items-center gap-2'>
 					<div className='flex items-center gap-2'>
 						<ModeToggle />
-						<Button type='button' size={'icon'} variant={'outline'}>
-							<ShoppingCart />
+						<Button
+							size={'icon'}
+							variant={cartsLength() ? 'secondary' : 'outline'}
+							className='relative'
+							aria-label='shopping-cart'
+						>
+							<ShoopingCart />
+							{cartsLength() ? (
+								<div
+									className='absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full 
+										bg-blue-500'
+								>
+									{cartsLength()}
+								</div>
+							) : null}
 						</Button>
 					</div>
 

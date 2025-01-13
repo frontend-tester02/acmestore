@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 'use client'
 import { IProduct } from '@/app.types'
 import { Button } from '@/components/ui/button'
@@ -15,7 +16,7 @@ function ProductInfo(product: IProduct) {
 		(!hasColorOptions || sellectedColor) && (!hasSizeOptions || sellectedSize)
 
 	return (
-		<div className='container mt-12'>
+		<div className='container mt-12 flex flex-col gap-4'>
 			<div className='flex flex-col gap-2'>
 				<h1 className='mt-2 space-y-2 font-roboto text-5xl font-bold'>
 					{product.title}
@@ -83,6 +84,8 @@ function ProductInfo(product: IProduct) {
 					Add To Cart
 				</Button>
 			</div>
+
+			<div className='mt-8'></div>
 		</div>
 	)
 }

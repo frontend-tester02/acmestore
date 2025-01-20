@@ -59,9 +59,9 @@ function UserBox() {
 					</Link>
 				)} */}
 
-				<Link href={'/seller'}>
+				<Link href={'/admin'}>
 					<DropdownMenuItem className='w-full cursor-pointer text-muted-foreground'>
-						Seller
+						Admin
 					</DropdownMenuItem>
 				</Link>
 

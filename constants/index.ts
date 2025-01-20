@@ -212,13 +212,13 @@ export const faqs = [
 ]
 
 export const sellerNavLinks = [
-	{ label: 'Dashboard', route: '/seller', icon: GaugeCircle },
-	{ label: 'My Products', route: '/seller/my-products', icon: ShoppingBag },
+	{ label: 'Dashboard', route: '/admin', icon: GaugeCircle },
+	{ label: 'My Products', route: '/admin/my-products', icon: ShoppingBag },
 	{
 		label: 'Create Product',
-		route: '/seller/create-products',
+		route: '/admin/create-products',
 		icon: FileCode,
 	},
-	{ label: 'Reviews', route: '/seller/reviews', icon: MessageSquareMore },
-	{ label: 'Settings', route: '/seller/settings', icon: Settings2 },
+	{ label: 'Reviews', route: '/admin/reviews', icon: MessageSquareMore },
+	{ label: 'Settings', route: '/admin/settings', icon: Settings2 },
 ]

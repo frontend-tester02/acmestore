@@ -26,8 +26,32 @@ export const formUrlQuery = ({
 	return qs.stringifyUrl(
 		{
 			url: toProducts
-				? `/${window.location.pathname.split('/')[1]}/products`
+				? `${window.location.pathname.split('/').join('/')}products`
 				: window.location.pathname,
+			query: currentUrl,
+		},
+		{ skipNull: true }
+	)
+}
+
+interface RemoveUrlQueryParams {
+	params: string
+	keyToRemmove: string[]
+}
+
+export const removeKeysFromQuery = ({
+	params,
+	keyToRemmove,
+}: RemoveUrlQueryParams) => {
+	const currentUrl = qs.parse(params)
+
+	keyToRemmove.forEach(key => {
+		delete currentUrl[key]
+	})
+
+	return qs.stringifyUrl(
+		{
+			url: window.location.pathname,
 			query: currentUrl,
 		},
 		{ skipNull: true }

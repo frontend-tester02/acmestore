@@ -8,7 +8,7 @@ import {
 
 export const navLinks = [
 	{ route: '', name: 'Home' },
-	{ route: 'search', name: 'Shop' },
+	{ route: 'products', name: 'Shop' },
 	{ route: 'faq', name: 'FAQ' },
 	{ route: 'contact', name: 'Contact' },
 ]
@@ -115,18 +115,18 @@ export const scrollItems = [
 ]
 
 export const products = [
-	{ route: '/search', name: 'All' },
-	{ route: '/search/bags', name: 'Bags' },
-	{ route: '/search/drinkware', name: 'Drinkware' },
-	{ route: '/search/electronics', name: 'Electronics' },
-	{ route: '/search/footware', name: 'Footware' },
-	{ route: '/search/headwear', name: 'Headwear' },
-	{ route: '/search/hoodies', name: 'Hoodies' },
-	{ route: '/search/jackets', name: 'Jackets' },
-	{ route: '/search/kids', name: 'Kids' },
-	{ route: '/search/pets', name: 'Pets' },
-	{ route: '/search/shirts', name: 'Shirts' },
-	{ route: '/search/stikers', name: 'Stikers' },
+	{ route: '/products', name: 'All' },
+	{ route: '/products/bags', name: 'Bags' },
+	{ route: '/products/drinkware', name: 'Drinkware' },
+	{ route: '/products/electronics', name: 'Electronics' },
+	{ route: '/products/footware', name: 'Footware' },
+	{ route: '/products/headwear', name: 'Headwear' },
+	{ route: '/products/hoodies', name: 'Hoodies' },
+	{ route: '/products/jackets', name: 'Jackets' },
+	{ route: '/products/kids', name: 'Kids' },
+	{ route: '/products/pets', name: 'Pets' },
+	{ route: '/products/shirts', name: 'Shirts' },
+	{ route: '/products/stikers', name: 'Stikers' },
 ]
 
 export const categoryProducts = [

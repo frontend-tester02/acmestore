@@ -3,17 +3,43 @@
 import { IProduct } from '@/app.types'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import React, { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import React, { useCallback, useState } from 'react'
 
 function ProductInfo(product: IProduct) {
 	const [sellectedColor, setSellectedColor] = useState<string>('')
 	const [sellectedSize, setSellectedSize] = useState<string>('')
+
+	const searchParams = useSearchParams()
+	const router = useRouter()
+
+	useCallback(() => {
+		setSellectedColor(searchParams.get('color') || '')
+		setSellectedSize(searchParams.get('size') || '')
+	}, [searchParams])
 
 	const hasColorOptions = product.color && product.color.length > 0
 	const hasSizeOptions = product.size && product.size.length > 0
 
 	const isSelectionComplete =
 		(!hasColorOptions || sellectedColor) && (!hasSizeOptions || sellectedSize)
+
+	const updateURL = (color: string, size: string) => {
+		const params = new URLSearchParams(searchParams)
+		if (color) params.set('color', color)
+		if (size) params.set('size', size)
+		router.push(`?${params.toString()}`, { scroll: false })
+	}
+
+	const handleColorSelect = (color: string) => {
+		setSellectedColor(color)
+		updateURL(color, sellectedSize)
+	}
+
+	const handleSizeSelect = (size: string) => {
+		setSellectedSize(size)
+		updateURL(sellectedColor, size)
+	}
 
 	return (
 		<div className='container mt-12 flex flex-col gap-4'>
@@ -38,7 +64,7 @@ function ProductInfo(product: IProduct) {
 							{product.color.split(', ').map(item => (
 								<Button
 									key={item}
-									onClick={() => setSellectedColor(item)}
+									onClick={() => handleColorSelect(item)}
 									className={`h-6 w-20 rounded-full border bg-white text-black hover:text-white dark:bg-black dark:text-white ${
 										sellectedColor === item
 											? 'border-blue-700 bg-black text-white transition-colors'
@@ -59,7 +85,7 @@ function ProductInfo(product: IProduct) {
 							{product.size.split(', ').map(item => (
 								<Button
 									key={item}
-									onClick={() => setSellectedSize(item)}
+									onClick={() => handleSizeSelect(item)}
 									className={`h-6 w-20 rounded-full border bg-white text-black hover:text-white dark:bg-black dark:text-white ${
 										sellectedSize === item
 											? 'border-blue-700 bg-black text-white transition-colors'

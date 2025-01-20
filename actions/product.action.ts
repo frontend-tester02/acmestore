@@ -108,7 +108,7 @@ export const getDetailedProduct = cache(async (slug: string) => {
 export const getAllProducts = async (params: GetAllProductParams) => {
 	try {
 		await connectToDatabase()
-		const { searchQuery, filter, maxPrice, minPrice } = params
+		const { searchQuery, filter } = params
 
 		const query: FilterQuery<IProduct> = {}
 
@@ -118,16 +118,6 @@ export const getAllProducts = async (params: GetAllProductParams) => {
 					title: { $regex: new RegExp(searchQuery, 'i') },
 				},
 			]
-		}
-
-		if (minPrice !== undefined || maxPrice !== undefined) {
-			query.price = {}
-			if (minPrice !== undefined) {
-				query.price.$gte = minPrice
-			}
-			if (maxPrice !== undefined) {
-				query.price.$lte = maxPrice
-			}
 		}
 
 		let sortOptions = {}

@@ -3,14 +3,17 @@
 import { IProduct } from '@/app.types'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { useCart } from '@/hooks/use-cart'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 
 function ProductInfo(product: IProduct) {
 	const [sellectedColor, setSellectedColor] = useState<string>('')
 	const [sellectedSize, setSellectedSize] = useState<string>('')
+	const [isLoading, setIsLoading] = useState(false)
 
 	const searchParams = useSearchParams()
+	const { addToCart } = useCart()
 	const router = useRouter()
 
 	useCallback(() => {
@@ -18,11 +21,11 @@ function ProductInfo(product: IProduct) {
 		setSellectedSize(searchParams.get('size') || '')
 	}, [searchParams])
 
-	const hasColorOptions = product.color && product.color.length > 0
-	const hasSizeOptions = product.size && product.size.length > 0
+	const colorOptions = product.color && product.color.length > 0
+	const sizeOptions = product.size && product.size.length > 0
 
 	const isSelectionComplete =
-		(!hasColorOptions || sellectedColor) && (!hasSizeOptions || sellectedSize)
+		(!colorOptions || sellectedColor) && (!sizeOptions || sellectedSize)
 
 	const updateURL = (color: string, size: string) => {
 		const params = new URLSearchParams(searchParams)
@@ -41,6 +44,11 @@ function ProductInfo(product: IProduct) {
 		updateURL(sellectedColor, size)
 	}
 
+	const onCart = () => {
+		setIsLoading(true)
+		addToCart(product, sellectedColor, sellectedSize)
+	}
+
 	return (
 		<div className='container mt-12 flex flex-col gap-4'>
 			<div className='flex flex-col gap-2'>
@@ -57,7 +65,7 @@ function ProductInfo(product: IProduct) {
 
 				<Separator className='my-3' />
 
-				{hasColorOptions && (
+				{colorOptions && (
 					<div className='mb-4 flex flex-col'>
 						<h1 className='mb-4 font-roboto text-2xl uppercase'>Color</h1>
 						<div className='mb-2 flex items-center gap-2'>
@@ -78,7 +86,7 @@ function ProductInfo(product: IProduct) {
 					</div>
 				)}
 
-				{hasSizeOptions && (
+				{sizeOptions && (
 					<div className='mb-4 flex flex-col'>
 						<h1 className='mb-4 font-roboto text-2xl uppercase '>Size</h1>
 						<div className='mb-2 flex items-center gap-2'>
@@ -105,7 +113,8 @@ function ProductInfo(product: IProduct) {
 					type='button'
 					className='flex w-full self-end rounded-full bg-blue-600 p-4 text-xl transition-opacity duration-200 hover:bg-blue-500'
 					style={{ opacity: isSelectionComplete ? 1 : 0.5 }}
-					disabled={!isSelectionComplete}
+					disabled={isLoading}
+					onClick={onCart}
 				>
 					Add To Cart
 				</Button>

@@ -12,8 +12,6 @@ function GlobalSearch() {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 
-	console.log(`${window.location.pathname.split('/').join('/')}/products`)
-
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		const text = e.target.value.toLowerCase()
 		const isProductPage = pathname.split('/').includes('products')

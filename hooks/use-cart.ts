@@ -3,11 +3,17 @@ import { create } from 'zustand'
 
 interface ICart extends IProduct {
 	quantity: number
+	selectedColor?: string
+	selectedSize?: string
 }
 
 interface ICartStore {
 	carts: ICart[]
-	addToCart: (product: IProduct) => void
+	addToCart: (
+		product: IProduct,
+		selectedColor?: string,
+		selectedSize?: string
+	) => void
 	removeFromCart: (id: string) => void
 	increment: (id: string) => void
 	decrement: (id: string) => void
@@ -19,22 +25,39 @@ interface ICartStore {
 
 export const useCart = create<ICartStore>((set, get) => ({
 	carts: [],
-	addToCart: (product: IProduct) => {
+	addToCart: (
+		product: IProduct,
+		selectedColor?: string,
+		selectedSize?: string
+	) => {
 		const { carts } = get()
-		const extisting = carts.find(cart => cart._id === product._id)
-		if (extisting) {
+		const existing = carts.find(
+			cart =>
+				cart._id === product._id &&
+				cart.selectedColor === selectedColor &&
+				cart.selectedSize === selectedSize
+		)
+		if (existing) {
 			set(state => {
 				const newCarts = state.carts.map(cart => {
-					if (cart._id === product._id) {
+					if (
+						cart._id === product._id &&
+						cart.selectedColor === selectedColor &&
+						cart.selectedSize === selectedSize
+					) {
 						return { ...cart, quantity: cart.quantity + 1 }
 					}
 					return cart
 				})
-
 				return { carts: newCarts }
 			})
 		} else {
-			set({ carts: [...carts, { ...product, quantity: 1 }] })
+			set({
+				carts: [
+					...carts,
+					{ ...product, quantity: 1, selectedColor, selectedSize },
+				],
+			})
 		}
 	},
 	removeFromCart: (id: string) => {

@@ -90,7 +90,10 @@ export const useCart = create<ICartStore>((set, get) => ({
 	totalPrice: (percentOff?: number) => {
 		const { carts } = get()
 
-		const total = carts.reduce((acc, cart) => acc + cart.price, 0)
+		const total = carts.reduce(
+			(acc, cart) => acc + cart.price * cart.quantity,
+			0
+		)
 
 		if (percentOff) {
 			return total - (total * percentOff) / 100

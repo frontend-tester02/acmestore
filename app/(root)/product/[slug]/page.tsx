@@ -9,7 +9,7 @@ type Props = {
 }
 
 async function Page({ params }: Props) {
-	const { slug } = await params
+	const { slug } = params
 	const productJSON = await getDetailedProduct(slug)
 
 	const product = JSON.parse(JSON.stringify(productJSON))

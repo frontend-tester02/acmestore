@@ -7,7 +7,7 @@ import { SearchParamsProps } from '@/app.types'
 import { getAllProducts } from '@/actions/product.action'
 
 async function Page({ searchParams }: SearchParamsProps) {
-	const params = await searchParams
+	const params = searchParams
 
 	const resultJSON = await getAllProducts({
 		searchQuery: params.q,

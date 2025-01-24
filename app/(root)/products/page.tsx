@@ -6,11 +6,13 @@ import SelectProducts from './_components/select-products'
 import { getAllProducts } from '@/actions/product.action'
 
 type SearchParamsProps = {
-	searchParams: { [key: string]: string | undefined }
+	searchParams:
+		| { [key: string]: string | undefined }
+		| Promise<{ [key: string]: string | undefined }>
 }
 
 async function Page({ searchParams }: SearchParamsProps) {
-	const params = searchParams
+	const params = await Promise.resolve(searchParams)
 
 	const resultJSON = await getAllProducts({
 		searchQuery: params.q,

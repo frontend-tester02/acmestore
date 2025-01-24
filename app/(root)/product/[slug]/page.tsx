@@ -2,13 +2,13 @@ import ProductImage from './_components/product-image'
 import { getDetailedProduct } from '@/actions/product.action'
 import ProductInfo from './_components/product-info'
 
-type Props = {
+type PageProps = {
 	params: {
 		slug: string
 	}
 }
 
-async function Page({ params }: Props) {
+async function Page({ params }: PageProps) {
 	const { slug } = params
 	const productJSON = await getDetailedProduct(slug)
 

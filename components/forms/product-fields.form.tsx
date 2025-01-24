@@ -90,7 +90,7 @@ function ProductsFieldsForm() {
 		)
 			.then(() => {
 				form.reset()
-				router.push('/seller/my-products')
+				router.push('/admin/my-products')
 			})
 			.finally(() => setIsLoading(false))
 

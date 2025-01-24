@@ -3,7 +3,9 @@ import EmptyShoppingCart from '@/components/shared/empty-shopping.cart'
 import { Button } from '@/components/ui/button'
 import {
 	Sheet,
+	SheetClose,
 	SheetContent,
+	SheetFooter,
 	SheetHeader,
 	SheetTrigger,
 } from '@/components/ui/sheet'
@@ -13,6 +15,7 @@ import Link from 'next/link'
 
 function ShoopingCart() {
 	const { carts, totalPrice, taxes } = useCart()
+
 	return (
 		<Sheet>
 			<SheetTrigger asChild>
@@ -70,11 +73,15 @@ function ShoopingCart() {
 							</p>
 						</div>
 
-						<Link href={'/shopping/cart'}>
-							<Button className='w-full rounded-full bg-blue-500 p-3 text-center text-sm font-medium text-white opacity-90 hover:bg-blue-500 hover:opacity-100'>
-								Proceed to Checkout
-							</Button>
-						</Link>
+						<SheetFooter>
+							<SheetClose className='w-full' asChild>
+								<Link href={'/shopping/cart'}>
+									<Button className='w-full rounded-full bg-blue-500 p-3 text-center text-sm font-medium text-white opacity-90 hover:bg-blue-500 hover:opacity-100'>
+										Proceed to Checkout
+									</Button>
+								</Link>
+							</SheetClose>
+						</SheetFooter>
 					</div>
 				</div>
 			</SheetContent>

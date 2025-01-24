@@ -15,7 +15,7 @@ export const createProduct = async (data: ICreateProduct, clerkId: string) => {
 		await connectToDatabase()
 		const user = await User.findOne({ clerkId })
 		await Product.create({ ...data, seller: user._id })
-		revalidatePath('/seller/my-products')
+		revalidatePath('/admin/my-products')
 	} catch (error) {
 		throw new Error('Something went wrong while creating course!')
 	}

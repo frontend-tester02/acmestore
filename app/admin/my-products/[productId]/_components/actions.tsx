@@ -26,8 +26,8 @@ function Actions(product: IProduct) {
 	}
 
 	const onDelete = () => {
-		const promise = deleteProduct(product._id, '/seller/my-products').then(() =>
-			router.push('/seller/my-products')
+		const promise = deleteProduct(product._id, '/admin/my-products').then(() =>
+			router.push('/admin/my-products')
 		)
 
 		toast.promise(promise, {

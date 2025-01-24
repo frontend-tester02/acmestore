@@ -10,7 +10,7 @@ interface Props {
 
 function SellerProductCard({ product }: Props) {
 	return (
-		<Link href={`/seller/my-products/${product._id}`}>
+		<Link href={`/admin/my-products/${product._id}`}>
 			<div className='group flex flex-col space-y-2 rounded-md bg-background p-2'>
 				<div className='relative h-52 w-full'>
 					<Image

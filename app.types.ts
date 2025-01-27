@@ -30,7 +30,20 @@ export interface IUser {
 }
 
 export interface SearchParamsProps {
-	searchParams: { [key: string]: string | undefined };
+	searchParams: { [key: string]: string | undefined }
+}
+
+export interface ShippingData {
+	fullName: string
+	lastName: string
+	email: string
+	phone: number
+	country: string
+	address: string
+	address2: string
+	city: string
+	state: string
+	zipCode: number
 }
 
 export interface IReview {

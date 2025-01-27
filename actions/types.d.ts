@@ -30,6 +30,4 @@ export interface GetProductParams {
 export interface GetAllProductParams {
 	searchQuery?: string
 	filter?: string
-	maxPrice?: number
-	minPrice?: number
 }

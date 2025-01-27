@@ -75,7 +75,7 @@ function ShoopingCart() {
 
 						<SheetFooter>
 							<SheetClose className='w-full' asChild>
-								<Link href={'/shopping/cart'}>
+								<Link href={'/shopping/information'}>
 									<Button className='w-full rounded-full bg-blue-500 p-3 text-center text-sm font-medium text-white opacity-90 hover:bg-blue-500 hover:opacity-100'>
 										Proceed to Checkout
 									</Button>

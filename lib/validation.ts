@@ -42,3 +42,16 @@ export const profileSchema = z.object({
 	phone: z.string().optional(),
 	job: z.string().min(3).optional(),
 })
+
+export const shoppingCartSchema = z.object({
+	email: z.string(),
+	phoneNumber: z.string(),
+	country: z.string(),
+	firstName: z.string(),
+	lastName: z.string(),
+	address: z.string(),
+	address2: z.string(),
+	city: z.string(),
+	state: z.string(),
+	zipCode: z.string(),
+})

@@ -1,9 +1,7 @@
-'use client'
 import { IProduct } from '@/app.types'
-import { useCart } from '@/hooks/use-cart'
-import { Minus, Plus, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { Button } from '../ui/button'
+import React from 'react'
 
 interface Props extends IProduct {
 	quantity: number
@@ -11,21 +9,19 @@ interface Props extends IProduct {
 	selectedSize?: string
 }
 
-function ShoppingCartCard(cart: Props) {
-	const { increment, decrement, removeFromCart } = useCart()
+function ShippingProductCart(cart: Props) {
 	return (
 		<>
-			<div className='grow overflow-auto'>
+			<div className='overflow-auto'>
 				<div className='flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700'>
-					<div className='relative flex w-full flex-row justify-between px-1 py-4'>
-						<div className='absolute z-40 -ml-1 -mt-3'>
+					<div className='relative flex w-full flex-row  justify-between px-1 py-4'>
+						<div className='absolute z-30 -ml-1 -mt-3 rounded-full'>
 							<Button
 								type='submit'
-								aria-label='Remove product from cart'
+								aria-label='Prododuct quantity'
 								className='flex size-[30px] items-center justify-center rounded-full bg-neutral-500'
-								onClick={() => removeFromCart(cart._id)}
 							>
-								<X className='size-1' />
+								{cart.quantity}
 							</Button>
 						</div>
 						<div className='flex flex-row'>
@@ -36,8 +32,8 @@ function ShoppingCartCard(cart: Props) {
 								<Image
 									src={cart.previewImage}
 									alt={cart.title}
-									width={64}
-									height={64}
+									width={70}
+									height={70}
 									className='size-full object-cover'
 								/>
 							</div>
@@ -57,26 +53,6 @@ function ShoppingCartCard(cart: Props) {
 									currency: 'USD',
 								})}{' '}
 							</p>
-							<div className='ml-auto flex h-9 flex-row items-center gap-4 rounded-full border border-neutral-200 p-1 dark:border-neutral-700'>
-								<Minus
-									className='transition-all hover:opacity-80 active:scale-125'
-									role='button'
-									onClick={() =>
-										cart.quantity === 1
-											? removeFromCart(cart._id)
-											: decrement(cart._id)
-									}
-								/>
-
-								<h1 className='font-roboto text-xl font-bold'>
-									{cart.quantity}
-								</h1>
-								<Plus
-									className='transition-all hover:opacity-80 active:scale-125'
-									role='button'
-									onClick={() => increment(cart._id)}
-								/>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -85,4 +61,4 @@ function ShoppingCartCard(cart: Props) {
 	)
 }
 
-export default ShoppingCartCard
+export default ShippingProductCart

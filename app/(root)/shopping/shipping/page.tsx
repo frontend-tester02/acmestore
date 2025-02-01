@@ -13,6 +13,7 @@ const breadcrumbItems = [
 
 function Page() {
 	const { carts, cartsLength, totalPrice, taxes } = useCart()
+
 	return (
 		<div className='container mx-auto max-w-6xl pt-[8vh]'>
 			<div className='mt-8 grid grid-cols-2 gap-4'>
@@ -27,7 +28,7 @@ function Page() {
 					<div className='mb-2 mt-6 rounded-lg border dark:border-white'>
 						<div className='flex items-center justify-between gap-2 p-2'>
 							<h1 className='font-roboto font-bold opacity-75'>Contact</h1>
-							<p className='text-sm'>shokhrukhnuriddinov@gmail.com</p>
+							<p className='text-sm'></p>
 							<Link
 								href={'/shopping/information'}
 								className='text-sm text-blue-500 underline'

@@ -1,4 +1,5 @@
 'use client'
+import { saveShippingInfo } from '@/actions/shipping.action'
 import { Button } from '@/components/ui/button'
 import {
 	Form,
@@ -12,9 +13,9 @@ import { Input } from '@/components/ui/input'
 import { shoppingCartSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MessageCircleWarning } from 'lucide-react'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 function ShippingInfo() {
@@ -27,6 +28,15 @@ function ShippingInfo() {
 
 	function onSubmit(values: z.infer<typeof shoppingCartSchema>) {
 		setIsLoading(true)
+		const res = saveShippingInfo(values).finally(() => setIsLoading(false))
+
+		const promise = res
+
+		toast.promise(promise, {
+			loading: 'Loading...',
+			success: 'Infromation saved successfully!',
+			error: 'Something went wrong saved information!',
+		})
 	}
 	return (
 		<>
@@ -57,7 +67,7 @@ function ShippingInfo() {
 							/>
 							<FormField
 								control={form.control}
-								name='phoneNumber'
+								name='phone'
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
@@ -257,11 +267,9 @@ function ShippingInfo() {
 							</div>
 						</div>
 
-						<Link href={'/shopping/shipping'}>
-							<Button type='submit' className='mt-3' disabled={isLoading}>
-								Continue to Shippping
-							</Button>
-						</Link>
+						<Button type='submit' className='mt-3' disabled={isLoading}>
+							Continue to Shippping
+						</Button>
 					</form>
 				</Form>
 			</div>

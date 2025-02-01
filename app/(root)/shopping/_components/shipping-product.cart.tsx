@@ -1,5 +1,4 @@
 import { IProduct } from '@/app.types'
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import React from 'react'
 
@@ -16,13 +15,9 @@ function ShippingProductCart(cart: Props) {
 				<div className='flex w-full flex-col border-b border-neutral-300 dark:border-neutral-700'>
 					<div className='relative flex w-full flex-row  justify-between px-1 py-4'>
 						<div className='absolute z-30 -ml-1 -mt-3 rounded-full'>
-							<Button
-								type='submit'
-								aria-label='Prododuct quantity'
-								className='flex size-[30px] items-center justify-center rounded-full bg-neutral-500'
-							>
+							<div className='flex size-[30px] items-center justify-center rounded-full bg-neutral-500'>
 								{cart.quantity}
-							</Button>
+							</div>
 						</div>
 						<div className='flex flex-row'>
 							<div

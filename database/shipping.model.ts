@@ -2,7 +2,7 @@ import { model, models, Schema } from 'mongoose'
 
 export const ShippingSchema = new Schema(
 	{
-		fullName: String,
+		firstName: String,
 		lastName: String,
 		email: String,
 		phone: String,
@@ -11,7 +11,7 @@ export const ShippingSchema = new Schema(
 		address2: String,
 		city: String,
 		state: String,
-		zipCode: Number,
+		zipCode: String,
 	},
 	{ timestamps: true }
 )

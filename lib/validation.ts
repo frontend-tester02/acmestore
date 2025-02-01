@@ -45,7 +45,7 @@ export const profileSchema = z.object({
 
 export const shoppingCartSchema = z.object({
 	email: z.string(),
-	phoneNumber: z.string(),
+	phone: z.string(),
 	country: z.string(),
 	firstName: z.string(),
 	lastName: z.string(),

@@ -34,16 +34,16 @@ export interface SearchParamsProps {
 }
 
 export interface ShippingData {
-	fullName: string
+	firstName: string
 	lastName: string
 	email: string
-	phone: number
+	phone: string
 	country: string
 	address: string
 	address2: string
 	city: string
 	state: string
-	zipCode: number
+	zipCode: string
 }
 
 export interface IReview {

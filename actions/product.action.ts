@@ -99,8 +99,6 @@ export const getDetailedProduct = cache(async (slug: string) => {
 		}
 		return product
 	} catch (error) {
-		console.log(error)
-
 		throw new Error('Something went wrong while getting detailed product')
 	}
 })

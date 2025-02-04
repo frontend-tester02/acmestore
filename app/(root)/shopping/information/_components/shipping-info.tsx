@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { shoppingCartSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MessageCircleWarning } from 'lucide-react'
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -267,9 +268,14 @@ function ShippingInfo() {
 							</div>
 						</div>
 
-						<Button type='submit' className='mt-3' disabled={isLoading}>
-							Continue to Shippping
-						</Button>
+						<div className='flex items-center justify-between'>
+							<Button type='submit' className='mt-3' disabled={isLoading}>
+								Save
+							</Button>
+							<Link href={'/shopping/shipping'}>
+								<Button>Continue to Shippping</Button>
+							</Link>
+						</div>
 					</form>
 				</Form>
 			</div>

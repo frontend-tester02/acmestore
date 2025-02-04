@@ -14,6 +14,7 @@ import { shoppingCartSchema } from '@/lib/validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MessageCircleWarning } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -21,13 +22,14 @@ import { z } from 'zod'
 
 function ShippingInfo() {
 	const [isLoading, setIsLoading] = useState(false)
+	const router = useRouter()
 
 	const form = useForm<z.infer<typeof shoppingCartSchema>>({
 		resolver: zodResolver(shoppingCartSchema),
 		defaultValues: {},
 	})
 
-	function onSubmit(values: z.infer<typeof shoppingCartSchema>) {
+	async function onSubmit(values: z.infer<typeof shoppingCartSchema>) {
 		setIsLoading(true)
 		const res = saveShippingInfo(values).finally(() => setIsLoading(false))
 
@@ -38,6 +40,10 @@ function ShippingInfo() {
 			success: 'Infromation saved successfully!',
 			error: 'Something went wrong saved information!',
 		})
+
+		if (await res) {
+			router.push('/shopping/shipping')
+		}
 	}
 	return (
 		<>
@@ -269,9 +275,6 @@ function ShippingInfo() {
 						</div>
 
 						<div className='flex items-center justify-between'>
-							<Button type='submit' className='mt-3' disabled={isLoading}>
-								Save
-							</Button>
 							<Link href={'/shopping/shipping'}>
 								<Button>Continue to Shippping</Button>
 							</Link>

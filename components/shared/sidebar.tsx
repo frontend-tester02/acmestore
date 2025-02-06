@@ -1,17 +1,30 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { sellerNavLinks } from '@/constants'
+import { adminNavLinks, profileNavLinks } from '@/constants'
 import { LogOut } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-function Sidebar() {
+interface Props {
+	page: 'admin' | 'user'
+}
+
+function Sidebar({ page }: Props) {
 	const pathname = usePathname()
+
+	const getNavLinks = () => {
+		if (page === 'admin') {
+			return adminNavLinks
+		} else {
+			return profileNavLinks
+		}
+	}
+
 	return (
 		<div className='fixed inset-0 mt-[10vh] h-[90vh] w-[300px] max-md:w-24'>
 			<div className='mt-2 px-4 max-md:px-2'>
 				<div className='flex flex-col space-y-3'>
-					{sellerNavLinks.map(item => (
+					{getNavLinks().map(item => (
 						<Link key={item.route} href={item.route}>
 							<Button
 								className='flex w-full justify-start gap-2 max-md:w-fit max-md:justify-center'

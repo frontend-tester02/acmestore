@@ -6,7 +6,7 @@ function Layout({ children }: ChildProps) {
 	return (
 		<>
 			<Navbar />
-			<Sidebar page='admin' />
+			<Sidebar page='user' />
 			<main className='w-full  p-4 pl-[320px] pt-[10vh] max-md:pl-20'>
 				<div className='size-full rounded-md bg-secondary px-4 pb-4'>
 					{children}

@@ -211,7 +211,7 @@ export const faqs = [
 	},
 ]
 
-export const sellerNavLinks = [
+export const adminNavLinks = [
 	{ label: 'Dashboard', route: '/admin', icon: GaugeCircle },
 	{ label: 'My Products', route: '/admin/my-products', icon: ShoppingBag },
 	{
@@ -221,4 +221,11 @@ export const sellerNavLinks = [
 	},
 	{ label: 'Reviews', route: '/admin/reviews', icon: MessageSquareMore },
 	{ label: 'Settings', route: '/admin/settings', icon: Settings2 },
+]
+
+export const profileNavLinks = [
+	{ label: 'Dashboard', route: '/profile', icon: GaugeCircle },
+	{ label: 'My Products', route: '/profile/my-products', icon: ShoppingBag },
+	{ label: 'Reviews', route: '/profile/reviews', icon: MessageSquareMore },
+	{ label: 'Settings', route: '/profile/settings', icon: Settings2 },
 ]

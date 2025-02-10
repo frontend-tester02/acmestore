@@ -213,7 +213,7 @@ export const faqs = [
 
 export const adminNavLinks = [
 	{ label: 'Dashboard', route: '/admin', icon: GaugeCircle },
-	{ label: 'My Products', route: '/admin/my-products', icon: ShoppingBag },
+	{ label: 'All Products', route: '/admin/all-products', icon: ShoppingBag },
 	{
 		label: 'Create Product',
 		route: '/admin/create-products',
